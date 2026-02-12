@@ -1,0 +1,346 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEERO OS | Elite Investment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #030712; color: white; scroll-behavior: smooth; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        
+        /* Glassmorphism Ultra */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            border: 1px solid rgba(0, 212, 255, 0.6);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        /* Ticker Animation */
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .ticker-wrap { overflow: hidden; background: rgba(0, 212, 255, 0.05); border-bottom: 1px solid rgba(0, 212, 255, 0.2); }
+        .ticker { display: flex; white-space: nowrap; animation: scroll 35s linear infinite; }
+
+         .gradient-text {
+    background: linear-gradient(90deg, #fff, #00d4ff, #0080ff);
+    /* Ajoute ces trois lignes pour supprimer l'alerte jaune */
+    background-clip: text; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Sécurité supplémentaire */
+}
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            background: linear-gradient(45deg, #0891b2, #00d4ff);
+            transition: 0.3s;
+        }
+        .btn-glow:hover { box-shadow: 0 0 35px rgba(0, 212, 255, 0.7); transform: scale(1.05); }
+
+        #particles-js { position: absolute; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* FAQ Content */
+        .faq-content { max-height: 0; overflow: hidden; transition: all 0.3s ease; opacity: 0; }
+        .faq-item.active .faq-content { max-height: 200px; opacity: 1; margin-top: 1rem; }
+        .faq-item.active i { transform: rotate(180deg); color: #00d4ff; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="particles-js"></div>
+
+    <div class="ticker-wrap fixed top-0 w-full z-[60] py-2 text-[10px] font-black uppercase tracking-widest">
+        <div class="ticker">
+            <span class="px-8"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i>AAPL <span class="text-cyan-400">+1.2%</span></span>
+            <span class="px-8"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i>NVDA <span class="text-cyan-400">+2.8%</span></span>
+            <span class="px-8 text-white">NEERO OS : <span class="underline">RETRAIT DISPONIBLE VIA OM/MTN</span></span>
+            <span class="px-8"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i>MSFT <span class="text-cyan-400">+0.9%</span></span>
+            <span class="px-8 text-cyan-400 underline">SESSION DOUALA : ACTIVE</span>
+            <span class="px-8"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i>AAPL <span class="text-cyan-400">+1.2%</span></span>
+            <span class="px-8"><i class="fas fa-circle text-green-500 mr-2 text-[6px]"></i>NVDA <span class="text-cyan-400">+2.8%</span></span>
+            <span class="px-8 text-white">NEERO OS : ROI 10% GARANTI</span>
+        </div>
+    </div>
+
+   <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10 py-4 mt-8 transition-all" id="navbar">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center gap-3 group cursor-pointer">
+            <img src="image_fon.png" alt="Logo" class="h-12 w-12 rounded-xl border border-cyan-500/50 group-hover:rotate-12 transition-transform">
+            <div class="flex flex-col">
+                <span class="text-2xl font-orbitron font-black tracking-tighter uppercase gradient-text">Neero OS</span>
+                <span class="text-[8px] text-cyan-500 font-bold tracking-[0.3em]">Quantum Bridge USA-CMR</span>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">
+            <a href="#about" class="hover:text-cyan-400 transition">Origins</a>
+            <a href="#process" class="hover:text-cyan-400 transition">Systeme</a>
+            <a href="#calc" class="hover:text-cyan-400 transition">Simulateur</a>
+            <a href="#faq" class="hover:text-cyan-400 transition">FAQ</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="flex items-center gap-2 px-3 py-1.5 border border-white/10 rounded-full hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group">
+    <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-4 h-3 object-cover rounded-sm opacity-70 group-hover:opacity-100">
+    <span class="text-[10px] font-black text-gray-400 group-hover:text-cyan-400 tracking-tighter uppercase">EN</span>
+</a>
+            <a href="http://neer-os-fund.camoo.net" class="btn-glow px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest italic transition-all transform hover:scale-105">
+                Access Investiseur
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-32 z-10">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-3 px-4 py-2 border border-cyan-500/30 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    </span>
+                    Opérationnel à Douala : 12 Février 2026
+                </div>
+                <h1 class="text-6xl md:text-8xl font-orbitron font-black mb-8 leading-[0.9]" data-aos="zoom-in">
+                    L'ARGENT <br> <span class="gradient-text italic">SANS REPOS.</span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-xl mb-12 leading-relaxed">
+                    Connectez vos liquidités Mobile Money au prestige du NASDAQ . 
+                    Un cycle de 20 jours pour transformer votre capital avec une sécurité bancaire.
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <div class="glass-card p-6 rounded-3xl min-w-[160px] border-l-4 border-cyan-500">
+                        <h3 class="text-3xl font-black text-white italic">+10%</h3>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Profit Garanti</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl min-w-[160px] border-l-4 border-white">
+                        <h3 class="text-3xl font-black text-white italic font-orbitron text-2xl">20 JRS</h3>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Cycle Rotation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group" data-aos="fade-left">
+                <div class="absolute -inset-10 bg-cyan-500/10 blur-[100px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
+               <img src="https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Market Analysis" class="relative rounded-[40px] border border-white/10 shadow-2xl floating">
+                <div class="absolute top-1/2 -right-8 glass-card p-6 rounded-2xl animate-bounce hidden md:block">
+                    <i class="fas fa-rocket text-cyan-400 text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calc" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="glass-card p-12 rounded-[40px] max-w-4xl mx-auto border-t-4 border-cyan-500">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-orbitron font-black italic mb-2 uppercase">Simulateur de <span class="text-cyan-400">Croissance</span></h2>
+                    <p class="text-gray-500 text-sm">Prévoyez vos dividendes selon l'algorithme Neero OS v2.0</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <label class="block text-xs uppercase font-black text-cyan-500 mb-4 tracking-widest">Capital d'Investissement (XAF)</label>
+                            <input type="range" id="rangeInput" min="2500" max="150000" step=" " value="  " class="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                            <input type="number" id="investAmount" value="  " class="mt-4 w-full bg-white/5 border border-white/10 p-4 rounded-xl text-2xl font-orbitron font-bold text-center focus:border-cyan-500 outline-none transition">
+                        </div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div class="bg-cyan-500/10 p-6 rounded-2xl border border-cyan-500/20">
+                            <p class="text-[10px] uppercase font-black text-cyan-500 mb-2">Bénéfice Net (/Jours)</p>
+                            <span id="profitResult" class="text-3xl font-black text-white italic"> FCFA</span>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <p class="text-[10px] uppercase font-black text-gray-500 mb-2">Total Retirable(20 Jours)</p>
+                            <span id="totalResult" class="text-3xl font-black text-white italic">  FCFA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-24 bg-white/[0.02] relative z-10">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center font-orbitron text-4xl font-black mb-16 italic uppercase tracking-tighter">Architecture du <span class="text-cyan-400">Système</span></h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up">
+                    <span class="absolute -top-4 -left-4 w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center font-black text-black italic font-orbitron">01</span>
+                    <i class="fas fa-fingerprint text-cyan-400 text-4xl mb-6"></i>
+                    <h4 class="font-black text-lg mb-3 uppercase italic">Auth Digitale</h4>
+                    <p class="text-gray-500 text-sm">Inscription cryptée via notre portail sécurisé AES-256.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="100">
+                    <span class="absolute -top-4 -left-4 w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center font-black text-black italic font-orbitron">02</span>
+                    <i class="fas fa-money-bill-transfer text-cyan-400 text-4xl mb-6"></i>
+                    <h4 class="font-black text-lg mb-3 uppercase italic">Injection</h4>
+                    <p class="text-gray-500 text-sm">Dépôt instantané par Orange Money, MTN ou Virement Local.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="200">
+                    <span class="absolute -top-4 -left-4 w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center font-black text-black italic font-orbitron">03</span>
+                    <i class="fas fa-microchip text-cyan-400 text-4xl mb-6"></i>
+                    <h4 class="font-black text-lg mb-3 uppercase italic">IA Placement</h4>
+                    <p class="text-gray-500 text-sm">Allocation automatique sur les actions à haute volatilité contrôlée (NASDAQ).</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="300">
+                    <span class="absolute -top-4 -left-4 w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center font-black text-black italic font-orbitron">04</span>
+                    <i class="fas fa-hand-holding-dollar text-cyan-400 text-4xl mb-6"></i>
+                    <h4 class="font-black text-lg mb-3 uppercase italic">Harvest</h4>
+                    <p class="text-gray-500 text-sm">Récupération des 110% de votre capital tous les 20 jours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 relative z-10 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-orbitron font-black mb-8 uppercase italic">L'ADN <span class="text-cyan-400 italic">Wall Street x Douala</span></h2>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>
+                            Né de la vision d'experts en finance à New York, le projet Neero OS a été conçu pour briser les barrières géographiques de l'investissement. 
+                        </p>
+                        <div class="bg-cyan-500/5 border-l-4 border-cyan-500 p-8 italic rounded-r-2xl">
+                            <p class="text-white font-bold">"Le capital camerounais ne doit plus dormir dans des comptes épargnes à 3%. Il doit travailler sur le marché mondial."</p>
+                            <p class="text-xs mt-4 uppercase font-black text-cyan-500 tracking-widest">— Fondateur, NEERO OS FUND</p>
+                        </div>
+                        <p>
+                            Aujourd'hui, en ce 12/02/2026, nous marquons l'histoire en installant notre centre opérationnel à **Douala (Akwa)**. Nous fusionnons la rigueur algorithmique USA avec la proximité locale.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=500" class="rounded-3xl border border-white/10 shadow-2xl hover:scale-105 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?q=80&w=500" class="rounded-3xl border border-white/10 shadow-2xl mt-12 hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white/[0.01]">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-center font-orbitron text-3xl font-black mb-12 italic uppercase">Intelligence <span class="text-cyan-400">Centrale</span> (FAQ)</h2>
+            <div class="space-y-4">
+                <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-l-4 border-transparent" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-sm uppercase tracking-widest">Pourquoi 20 jours précisément ?</h4>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                    </div>
+                    <div class="faq-content text-gray-400 text-sm leading-relaxed">
+                        C'est la fenêtre optimale de rotation pour l'algorithme Alpha-Quantum qui exploite les cycles boursiers mensuels aux USA tout en garantissant une liquidité totale pour nos membres au Cameroun.
+                    </div>
+                </div>
+                <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-l-4 border-transparent" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-sm uppercase tracking-widest">Mes fonds sont-ils garantis ?</h4>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                    </div>
+                    <div class="faq-content text-gray-400 text-sm leading-relaxed">
+                        Chaque investissement est adossé à des actifs réels diversifiés. En cas de volatilité extrême, notre fonds de réserve basé à Douala couvre le capital principal pour assurer le versement des dividendes.
+                    </div>
+                </div>
+                <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-l-4 border-transparent" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-sm uppercase tracking-widest">Comment retirer mes gains ?</h4>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                    </div>
+                    <div class="faq-content text-gray-400 text-sm leading-relaxed">
+                        Les retraits sont automatiques après chaque cycle de 20 jours. Vous recevez une notification sur votre tableau de bord et le transfert se fait vers votre numéro Mobile Money enregistré.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-white/5 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                        <img src="image_fon.png" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-500">
+                        <span class="text-2xl font-orbitron font-black italic">NEERO <span class="text-cyan-500">OS</span></span>
+                    </div>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.4em]">Global Fintech Bridge - Douala & USA</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="http://neer-os-fund.camoo.net" class="btn-glow px-10 py-5 rounded-full text-xl font-black italic tracking-tighter uppercase">
+                        Démarrer Maintenant
+                    </a>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-white/5 text-center text-[10px] text-gray-600 font-bold uppercase tracking-[0.5em]">
+                &copy; 2026 Neero OS Funding Corp. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Particles
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 90, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00d4ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 2 }
+            }
+        });
+
+        // Calculateur Dynamique Avancé
+        const range = document.getElementById('rangeInput');
+        const investInput = document.getElementById('investAmount');
+        const profitOut = document.getElementById('profitResult');
+        const totalOut = document.getElementById('totalResult');
+
+        function updateCalc(val) {
+            let amount = parseFloat(val) || 0;
+            let profit = amount * 0.10;
+            profitOut.innerText = profit.toLocaleString() + " FCFA";
+            totalOut.innerText = (profit*20).toLocaleString() + " FCFA";
+        }
+
+        range.addEventListener('input', (e) => {
+            investInput.value = e.target.value;
+            updateCalc(e.target.value);
+        });
+
+        investInput.addEventListener('input', (e) => {
+            range.value = e.target.value;
+            updateCalc(e.target.value);
+        });
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            el.classList.toggle('active');
+        }
+
+        // Navbar Scroll
+        window.onscroll = function() {
+            let nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('py-2', 'bg-black/95', 'shadow-2xl');
+            } else {
+                nav.classList.remove('py-2', 'bg-black/95', 'shadow-2xl');
+            }
+        };
+    </script>
+</body>
+</html>
